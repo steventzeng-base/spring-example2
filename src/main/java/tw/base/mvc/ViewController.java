@@ -10,6 +10,8 @@ import java.io.Writer;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXB;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,9 +32,21 @@ public class ViewController {
         return "boy".equals(gender) ? "boy" : "girl";
     }
 
+    @RequestMapping("/view/model")
+    public Model model(Model model) {
+        model.addAttribute("name", "Helen");
+        return model;
+    }
+
+
     @RequestMapping("/view/home")
     public void defaultView(Model model) {
         model.addAttribute("name", "john");
+    }
+
+    @RequestMapping("/view/entity")
+    public ResponseEntity<String> reposeEntity(){
+        return new ResponseEntity<String>("404 MyForbidden Page", HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping("/view/pathvar/{name}/{age}")

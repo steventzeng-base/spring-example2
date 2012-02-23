@@ -23,6 +23,15 @@ public class Person {
 
     private int age;
 
+    public Person() {
+    }
+
+    public Person(Long id, String name, int age) {
+        this.name = name;
+        this.id = id;
+        this.age = age;
+    }
+
     @XmlAttribute
     public Long getId() {
         return id;
